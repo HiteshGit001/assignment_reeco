@@ -1,3 +1,4 @@
+import useAppSelector from "../../hooks/useAppSelector"
 import { GridBox } from "../../styledComponents/GridBox"
 import { labels } from "../../utils/labels"
 import { IoFastFoodSharp } from "react-icons/io5"
@@ -5,8 +6,12 @@ import { MdFastfood, MdFoodBank, MdEmojiFoodBeverage } from "react-icons/md"
 
 
 const SupplierDetails = () => {
+  const { supplierData } = useAppSelector((state) => state.supplier);
+
+  const total = supplierData.reduce((acc, curr) => Number(acc) + Number(curr.total), 0);
+
   const Grid = GridBox(6);
-  const GridIcons = GridBox(4)
+  const GridIcons = GridBox(4);
   return (
     <Grid style={{ alignItems: "flex-start" }}>
       <div>
@@ -19,7 +24,7 @@ const SupplierDetails = () => {
       </div>
       <div>
         <p>{labels.total}</p>
-        <p className="f_m">$ total</p>
+        <p className="f_m">$ {total}</p>
       </div>
       <div>
         <p>{labels.category}</p>
@@ -30,10 +35,10 @@ const SupplierDetails = () => {
           <MdEmojiFoodBeverage />
         </GridIcons>
         <GridIcons>
-          <IoFastFoodSharp />
           <MdFastfood />
-          <MdFoodBank />
+          <IoFastFoodSharp />
           <MdEmojiFoodBeverage />
+          <MdFoodBank />
         </GridIcons>
       </div>
       <div>

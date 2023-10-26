@@ -16,6 +16,9 @@ interface IUpdate {
   price: number,
   quantity: number,
   total: number,
+  prePrice: number,
+  preQuantity: number,
+  preTotal: number,
 }
 const EditModal = (props: IEditModal) => {
   const { item, close = () => null } = props;
@@ -26,23 +29,40 @@ const EditModal = (props: IEditModal) => {
     price: item.price,
     quantity: item.quantity,
     total: item.total,
+    prePrice: item.price,
+    preQuantity: item.quantity,
+    preTotal: item.total,
   };
 
   const reducer = (state: IUpdate, action: any) => {
     const { type, value } = action
     switch (type) {
+      case "empty":
+        return initialState
+        break;
       case "price":
         return {
           ...state,
           price: Number(value),
-          total: state.price * state.quantity
+          total: Number(value) * state.quantity,
+          prePrice: state.price
         }
         break;
       case "quantityAdd":
-        return { ...state, quantity: state.quantity + 1, total: state.price * state.quantity }
+        return {
+          ...state,
+          quantity: state.quantity + 1,
+          total: state.price * (state.quantity + 1),
+          preQuantity: state.quantity,
+        }
         break;
       case "quantitySub":
-        return { ...state, quantity: state.quantity - 1, total: state.price * state.quantity }
+        return {
+          ...state,
+          quantity: state.quantity - 1,
+          total: state.price * (state.quantity - 1),
+          preTotal: state.total
+        }
         break;
       default: return state
     }
@@ -66,7 +86,9 @@ const EditModal = (props: IEditModal) => {
   }
 
   const handleSave = (id: string) => {
-    dispatch(editSupplier({ id, values: { ...item, ...updatedValues, status: selectedTab } }))
+    console.log({ ...item, ...updatedValues, status: selectedTab });
+    dispatch(editSupplier({ id, values: { ...item, ...updatedValues, status: selectedTab } }));
+    dispatchReducer({ type: "empty" })
     close();
   }
 

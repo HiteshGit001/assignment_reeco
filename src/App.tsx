@@ -77,7 +77,7 @@ function App() {
         close={() => confirmRegect(disApproveModal, false)}
         body={
           <>
-            <p style={{marginTop:"1rem"}} >is {disProductName} urgent</p>
+            <p style={{ marginTop: "1rem" }} >is {disProductName} urgent</p>
             <div style={{ margin: "1rem 0 0 0", display: "flex", justifyContent: "flex-end", alignItems: "flex-end", gap: "0.5rem" }}>
               <p className='pointer f_bold' onClick={() => confirmRegect(disApproveModal, false)}>{labels.no}</p>
               <p className='pointer f_bold' onClick={() => confirmRegect(disApproveModal, true)}>{labels.yes}</p>

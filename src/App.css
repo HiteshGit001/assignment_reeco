@@ -14,18 +14,30 @@ table {
   width: 100%;
 }
 
+thead {
+  border-radius: 0.5rem 0.5rem 0 0 !important;
+  border: 1px solid #dddddd;
+}
+
 td,
 th {
-  border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
 }
 
+tr {
+  border: 1px solid #dddddd;
+}
 .pointer {
   cursor: pointer;
 }
 
-.mt_1{
+.dashed_text {
+  text-decoration: line-through;
+  color: lightgray;
+}
+
+.mt_1 {
   margin-top: 1rem;
 }
 
@@ -73,6 +85,10 @@ th {
 
 .bg_white {
   background-color: white;
+}
+
+.bg_lightgray {
+  background-color: lightgray;
 }
 
 .bg_selected {

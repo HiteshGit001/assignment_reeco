@@ -5,6 +5,7 @@ import { labels } from "../../utils/labels";
 import CustomInput from "./CustomInput";
 import AppleGreenSmith from "../../assets/images/AppleGreenSmith.png";
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai"
+import { GridBox } from "../../styledComponents/GridBox";
 
 interface ICustomTable {
   data: any[];
@@ -23,6 +24,9 @@ const CustomTable = (props: ICustomTable) => {
     handleAccept = () => null,
     handleRegect = () => null,
   } = props;
+
+  const Grid = GridBox(3)
+
   const dataKeys = column.map((ele) => ele?.key);
 
   const status = [
@@ -65,26 +69,28 @@ const CustomTable = (props: ICustomTable) => {
                                 <img width={50} alt={item} src={AppleGreenSmith} />
                               </td>
                               : item === "action"
-                                ? <td style={{ display: "flex", gap: "0.5rem" }}>
-                                  <AiOutlineCheck
-                                    className="f_2"
-                                    style={{
-                                      color: ele.status === labels.approved
-                                        ? "green"
-                                        : "lightGray"
-                                    }}
-                                    onClick={() => handleAccept(ele.id)} />
-                                  <AiOutlineClose
-                                    style={{
-                                      color: ele.status === labels.missing
-                                        ? "red"
-                                        : "lightGray"
-                                    }}
-                                    className="f_2" onClick={() => handleRegect(ele.id, ele.productName)} />
-                                  <span className="pointer" onClick={() => handleEdit(ele.id, ele)}>Edit</span>
+                                ? <td className="bg_lightgray">
+                                  <Grid>
+                                    <AiOutlineCheck
+                                      className="f_2"
+                                      style={{
+                                        color: ele.status === labels.approved
+                                          ? "green"
+                                          : "gray"
+                                      }}
+                                      onClick={() => handleAccept(ele.id)} />
+                                    <AiOutlineClose
+                                      style={{
+                                        color: ele.status === labels.missing
+                                          ? "red"
+                                          : "gray"
+                                      }}
+                                      className="f_2" onClick={() => handleRegect(ele.id, ele.productName)} />
+                                    <span className="pointer" onClick={() => handleEdit(ele.id, ele)}>Edit</span>
+                                  </Grid>
                                 </td>
                                 : item === "status"
-                                  ? <td>
+                                  ? <td className="bg_lightgray">
                                     <div style={{
                                       display: "flex",
                                       justifyContent: "center",
@@ -101,7 +107,14 @@ const CustomTable = (props: ICustomTable) => {
                                       </p>
                                     </div>
                                   </td>
-                                  : <td key={item}>{ele?.[item]}</td>
+                                  : <td key={item}>
+                                    <p>
+                                      {ele?.[item]}
+                                    </p>
+                                    {ele.prePrice !== 0 && ele.prePrice !== ele.price && item === "price" && <p className="dashed_text">{ele.prePrice}</p>}
+                                    {ele.preQuantity !== 0 && ele.preQuantity !== ele.quantity && item === "quantity" && <p className="dashed_text">{ele.preQuantity}</p>}
+                                    {ele.preTotal !== 0 && ele.preTotal !== ele.total && item === "total" && <p className="dashed_text">{ele.preTotal}</p>}
+                                  </td>
                           }
                         </>
                       )
