@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Modal = (isOpen: boolean, height: number) => styled.div`
+export const Modal = (isOpen: boolean) => styled.div`
   display:${isOpen ? "block" : "none"};
   position: fixed;
   top: 0;
@@ -14,8 +14,8 @@ export const Modal = (isOpen: boolean, height: number) => styled.div`
     align-items:center;
     height:100%;
       .modal_body{
-        padding:0.8rem;
-        height:${height}px;
+        padding:1.5rem;
+        height:fit-content;
         background-color:white;
         border-radius:0.5rem;
     }

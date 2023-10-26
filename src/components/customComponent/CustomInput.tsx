@@ -8,9 +8,10 @@ interface ICustomInput {
   placeHolder?: string,
   value?: any,
   onChange?: ChangeEventHandler<HTMLInputElement> | undefined,
+  focus?: boolean,
 }
 const CustomInput = (props: ICustomInput) => {
-  const { label, placeHolder, value, onChange = () => null } = props;
+  const { label, placeHolder, value, onChange = () => null, focus = false } = props;
   return (
     <InputDiv>
       {
@@ -22,6 +23,7 @@ const CustomInput = (props: ICustomInput) => {
         placeholder={placeHolder}
         value={value}
         onChange={onChange}
+        autoFocus={focus}
       />
     </InputDiv>
   )

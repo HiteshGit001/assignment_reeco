@@ -27,6 +27,14 @@ export const supplierSlice = createSlice({
           ? { ...ele, [key]: value }
           : { ...ele })
       }
+    },
+    editSupplier: (state, action) => {
+      const { id, values } = action.payload
+      return {
+        ...state,
+        supplierData: state.supplierData.map((ele) => ele.id === id
+          ? values : ele)
+      }
     }
   }
 })
@@ -34,6 +42,7 @@ export const supplierSlice = createSlice({
 export const {
   updateSupplierList,
   updateSupplierData,
+  editSupplier,
 } = supplierSlice.actions;
 
 export const supplierSelector = (state: RootState): object => state.supplier;

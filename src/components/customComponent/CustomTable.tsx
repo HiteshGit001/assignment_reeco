@@ -4,6 +4,7 @@ import { ChangeEventHandler } from "react";
 import { labels } from "../../utils/labels";
 import CustomInput from "./CustomInput";
 import AppleGreenSmith from "../../assets/images/AppleGreenSmith.png";
+import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai"
 
 interface ICustomTable {
   data: any[];
@@ -27,6 +28,9 @@ const CustomTable = (props: ICustomTable) => {
   const status = [
     { label: labels.approved, color: "green" },
     { label: labels.missing, color: "red" },
+    { label: labels.missingProduct, color: "red" },
+    { label: labels.quantityIsNotTheSame, color: "orange" },
+    { label: labels.priceIsNotTheSame, color: "blue" }
   ];
 
   return (
@@ -62,9 +66,22 @@ const CustomTable = (props: ICustomTable) => {
                               </td>
                               : item === "action"
                                 ? <td style={{ display: "flex", gap: "0.5rem" }}>
-                                  <span onClick={() => handleAccept(ele.id)}>A</span>
-                                  <span onClick={() => handleRegect(ele.id, ele.productName)}>X</span>
-                                  <span onClick={() => handleEdit(ele.id)}>Edit</span>
+                                  <AiOutlineCheck
+                                    className="f_2"
+                                    style={{
+                                      color: ele.status === labels.approved
+                                        ? "green"
+                                        : "lightGray"
+                                    }}
+                                    onClick={() => handleAccept(ele.id)} />
+                                  <AiOutlineClose
+                                    style={{
+                                      color: ele.status === labels.missing
+                                        ? "red"
+                                        : "lightGray"
+                                    }}
+                                    className="f_2" onClick={() => handleRegect(ele.id, ele.productName)} />
+                                  <span className="pointer" onClick={() => handleEdit(ele.id, ele)}>Edit</span>
                                 </td>
                                 : item === "status"
                                   ? <td>

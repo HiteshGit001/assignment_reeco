@@ -6,6 +6,5 @@ export const InputDiv = styled.div`
     outline:none;
     padding:0.8rem 0.5rem;
     border:1px solid gray;
-    width:99%
   }
 `

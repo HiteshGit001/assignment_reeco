@@ -10,13 +10,20 @@ import { updateSupplierData, updateSupplierList } from './store/slice/supplierSl
 import { useDispatch } from 'react-redux';
 import CustomModal from './components/customComponent/CustomModal';
 import { labels } from './utils/labels';
+import EditModal from './components/editModal/EditModal';
+import NavBar from './components/navBar/NavBar';
 
 function App() {
   const { supplierData } = useAppSelector((state) => state.supplier);
   const dispatch = useDispatch();
 
+  // modal for disapprove
   const [disApproveModal, setDisApproveModal] = useState("");
   const [disProductName, setDisProductName] = useState("");
+
+  // modal for edit
+  const [editModal, setEditModal] = useState(false);
+  const [editData, setEditData] = useState<any>({});
 
   const column = [
     { label: "", key: "img" },
@@ -33,8 +40,10 @@ function App() {
     console.log(event.target.value);
   }
 
-  const handleEdit = (id: string) => {
+  const handleEdit = (id: string, item: any) => {
     console.log("edit", id);
+    setEditModal(!editModal);
+    setEditData(item);
   }
 
   const handleAccept = (id: string) => {
@@ -62,24 +71,38 @@ function App() {
 
   return (
     <>
-      <CustomModal label={labels.missingProduct} isOpen={disApproveModal ? true : false} body={
-        <>
-          <p>is {disProductName} urgent</p>
-          <div style={{ margin: "1rem 0 0 0", display: "flex", justifyContent: "flex-end", alignItems: "flex-end", gap: "0.5rem" }}>
-            <p className='pointer' onClick={() => confirmRegect(disApproveModal, false)}>{labels.no}</p>
-            <p className='pointer' onClick={() => confirmRegect(disApproveModal, true)}>{labels.yes}</p>
-          </div>
-        </>
-      } />
-      <CustomCard body={<SupplierDetails />} />
-      <CustomCard body={<CustomTable
-        handleEdit={handleEdit}
-        handleAccept={handleAccept}
-        handleRegect={handleRegect}
-        onChange={(e: any) => handleChange(e)}
-        data={supplierData}
-        column={column}
-      />} />
+      <NavBar />
+      <CustomModal label={labels.missingProduct}
+        isOpen={disApproveModal ? true : false}
+        close={() => confirmRegect(disApproveModal, false)}
+        body={
+          <>
+            <p style={{marginTop:"1rem"}} >is {disProductName} urgent</p>
+            <div style={{ margin: "1rem 0 0 0", display: "flex", justifyContent: "flex-end", alignItems: "flex-end", gap: "0.5rem" }}>
+              <p className='pointer f_bold' onClick={() => confirmRegect(disApproveModal, false)}>{labels.no}</p>
+              <p className='pointer f_bold' onClick={() => confirmRegect(disApproveModal, true)}>{labels.yes}</p>
+            </div>
+          </>
+        } />
+      <CustomModal label='' isOpen={editModal}
+        close={() => handleEdit("", {})}
+        body={
+          <EditModal
+            close={() => handleEdit("", {})}
+            item={editData} />
+        }
+      />
+      <div style={{ margin: "2rem" }}>
+        <CustomCard body={<SupplierDetails />} />
+        <CustomCard body={<CustomTable
+          handleEdit={handleEdit}
+          handleAccept={handleAccept}
+          handleRegect={handleRegect}
+          onChange={(e: any) => handleChange(e)}
+          data={supplierData}
+          column={column}
+        />} />
+      </div>
     </>
   )
 }

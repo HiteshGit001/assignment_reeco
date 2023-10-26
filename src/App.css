@@ -24,3 +24,58 @@ th {
 .pointer {
   cursor: pointer;
 }
+
+.mt_1{
+  margin-top: 1rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.gap_1 {
+  gap: 1rem;
+}
+
+.align_center {
+  align-items: center;
+}
+
+.justify_between {
+  justify-content: space-between;
+}
+
+.justify_end {
+  justify-content: flex-end;
+}
+
+/* selectable tabs */
+.not_selected {
+  padding: 0.5rem;
+  border-radius: 5rem;
+  border: 0.5px solid gray;
+}
+
+/* fonts */
+.f_m {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.f_2 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.f_bold {
+  font-weight: bold;
+}
+
+.bg_white {
+  background-color: white;
+}
+
+.bg_selected {
+  background-color: rgb(30, 99, 63);
+  color: white;
+}
