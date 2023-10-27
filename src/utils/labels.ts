@@ -17,6 +17,9 @@ export const labels = {
   chooseReason: "Choose reason",
   quantityIsNotTheSame: "Quantity is not the same",
   priceIsNotTheSame: "Price is not the same",
+  priceUpdated: "Price updated",
+  quantityUpdated: "Quantity updated",
+  priceAndQuantityUpdated: "Price and quantity updated",
   cancel: "Cancel",
   send: "Send",
 }

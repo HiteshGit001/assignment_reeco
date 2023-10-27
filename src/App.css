@@ -8,6 +8,26 @@
   margin: 0;
 }
 
+::-webkit-scrollbar {
+  height: 0.25rem;
+  width: 0.5rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 0.5rem;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(30, 99, 63);
+  border-radius: 0.5rem;
+}
+
+::-webkit-scrollbar-horizontal {
+  height: 0.25rem !important;
+}
+
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
@@ -28,6 +48,7 @@ th {
 tr {
   border: 1px solid #dddddd;
 }
+
 .pointer {
   cursor: pointer;
 }
@@ -88,7 +109,7 @@ tr {
 }
 
 .bg_lightgray {
-  background-color: lightgray;
+  background-color: rgb(239, 238, 238);
 }
 
 .bg_selected {

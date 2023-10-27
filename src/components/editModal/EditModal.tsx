@@ -81,13 +81,22 @@ const EditModal = (props: IEditModal) => {
     dispatchReducer({ type: "price", value });
   }
 
-  const handleUpdateQuantity = (type: string) => {
-    dispatchReducer({ type });
+  const handleUpdateQuantity = (type: string, value: number) => {
+    if (value >= 0) {
+      dispatchReducer({ type });
+    }
   }
 
   const handleSave = (id: string) => {
-    console.log({ ...item, ...updatedValues, status: selectedTab });
-    dispatch(editSupplier({ id, values: { ...item, ...updatedValues, status: selectedTab } }));
+    let status;
+    if (item.quantity !== updatedValues.quantity && item.price !== updatedValues.price) {
+      status = labels.priceAndQuantityUpdated;
+    } else if (item.quantity !== updatedValues.quantity) {
+      status = labels.quantityUpdated;
+    } else if (item.price !== updatedValues.price) {
+      status = labels.priceUpdated;
+    }
+    dispatch(editSupplier({ id, values: { ...item, ...updatedValues, status: selectedTab || status } }));
     dispatchReducer({ type: "empty" })
     close();
   }
@@ -113,9 +122,9 @@ const EditModal = (props: IEditModal) => {
           <div className="flex align_center justify_between gap_1">
             <p>{labels.quantity}</p>
             <div className="flex gap_1">
-              <Button onClick={() => handleUpdateQuantity("quantityAdd")}>+</Button>
+              <Button onClick={() => handleUpdateQuantity("quantityAdd", updatedValues.quantity + 1)}>+</Button>
               <CustomInput value={updatedValues.quantity} />
-              <Button onClick={() => handleUpdateQuantity("quantitySub")}>-</Button>
+              <Button onClick={() => handleUpdateQuantity("quantitySub", updatedValues.quantity - 1)}>-</Button>
             </div>
             <span> *6 1lb</span>
           </div>

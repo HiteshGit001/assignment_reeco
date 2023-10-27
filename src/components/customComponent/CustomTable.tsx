@@ -34,7 +34,10 @@ const CustomTable = (props: ICustomTable) => {
     { label: labels.missing, color: "red" },
     { label: labels.missingProduct, color: "red" },
     { label: labels.quantityIsNotTheSame, color: "orange" },
-    { label: labels.priceIsNotTheSame, color: "blue" }
+    { label: labels.priceIsNotTheSame, color: "blue" },
+    { label: labels.priceUpdated, color: "lightGreen" },
+    { label: labels.quantityUpdated, color: "lightBlue" },
+    { label: labels.priceAndQuantityUpdated, color: "limeGreen" }
   ];
 
   return (
