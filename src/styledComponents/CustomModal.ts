@@ -13,6 +13,7 @@ export const Modal = (isOpen: boolean) => styled.div`
     justify-content:center;
     align-items:center;
     height:100%;
+    overflow-x: scroll;
       .modal_body{
         padding:1.5rem;
         height:fit-content;

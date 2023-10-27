@@ -13,7 +13,7 @@ const SupplierDetails = () => {
   const Grid = GridBox(6);
   const GridIcons = GridBox(4);
   return (
-    <Grid style={{ alignItems: "flex-start" }}>
+    <Grid style={{ alignItems: "flex-start", gap:"1rem" }}>
       <div>
         <p>{labels.supplier}</p>
         <p className="f_m">{labels.supplierName}</p>

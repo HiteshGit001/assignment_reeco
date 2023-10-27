@@ -41,7 +41,7 @@ const CustomTable = (props: ICustomTable) => {
   ];
 
   return (
-    <div>
+    <div style={{ overflowX: "scroll" }}>
       <CustomInput onChange={onChange} placeHolder={labels.search} />
       <table>
         <thead>

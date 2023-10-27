@@ -109,7 +109,7 @@ const EditModal = (props: IEditModal) => {
     <div>
       <h3>{item.productName}</h3>
       <p>{item.brand}</p>
-      <div className="flex justify_between gap_1" style={{}}>
+      <div className="flex justify_between gap_1" style={{ flexWrap: "wrap" }}>
         <img style={{ height: "100px" }} src={AppleGreenSmith} />
         <div>
           <div className="flex align_center justify_between gap_1">
